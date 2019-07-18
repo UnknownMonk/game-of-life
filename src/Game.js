@@ -113,14 +113,7 @@ class Game extends React.Component {
     this.board = this.makeEmptyBoard();
     this.setState({ cells: this.makeCells(), count: 0 });
   };
-  handleRandom = () => {
-    for (let y = 0; y < this.rows; y++) {
-      for (let x = 0; x < this.cols; x++) {
-        this.board[y][x] = Math.random() >= 0.5;
-      }
-    }
-    this.setState({ cells: this.makeCells(), count: 0 });
-  };
+
   runIteration() {
     let count = this.state.count;
     ++count;
@@ -189,7 +182,7 @@ class Game extends React.Component {
             value={this.state.interval}
             onChange={this.handleIntervalChange}
           />{' '}
-          <span className="directions">msec</span>
+          <span className="directions">Millaseconds</span>
           {isRunning ? (
             <button className="button" onClick={this.stopGame}>
               Stop
@@ -199,9 +192,6 @@ class Game extends React.Component {
               Run
             </button>
           )}
-          <button className="button" onClick={this.handleRandom}>
-            Random
-          </button>
           <button className="button" onClick={this.handleClear}>
             Clear
           </button>
