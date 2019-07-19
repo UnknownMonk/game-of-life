@@ -1,8 +1,9 @@
 import React from 'react';
 import './Game.css';
 const CELL_SIZE = 20;
-const WIDTH = 1000;
-const HEIGHT = 800;
+let WIDTH = 1000;
+let HEIGHT = 800;
+
 class Cell extends React.Component {
   render() {
     const { x, y } = this.props;
@@ -22,11 +23,19 @@ class Cell extends React.Component {
 class Game extends React.Component {
   constructor() {
     super();
+
     this.rows = HEIGHT / CELL_SIZE;
     this.cols = WIDTH / CELL_SIZE;
     this.board = this.makeEmptyBoard();
   }
-  state = { cells: [], interval: 100, isRunning: false, count: 0 };
+  state = {
+    cells: [],
+    interval: 100,
+    isRunning: false,
+    count: 0,
+    height: HEIGHT,
+    width: WIDTH
+  };
   makeEmptyBoard() {
     let board = [];
     for (let y = 0; y < this.rows; y++) {
@@ -113,6 +122,21 @@ class Game extends React.Component {
     this.board = this.makeEmptyBoard();
     this.setState({ cells: this.makeCells(), count: 0 });
   };
+  handleRandom = () => {
+    for (let y = 0; y < this.rows; y++) {
+      for (let x = 0; x < this.cols; x++) {
+        this.board[y][x] = Math.random() >= 0.5;
+      }
+    }
+    this.setState({ cells: this.makeCells(), count: 0 });
+  };
+  size = () => {
+    this.setState({ height: (HEIGHT += 100), width: (WIDTH += 100) });
+  };
+
+  sizeDown = () => {
+    this.setState({ height: (HEIGHT -= 100), width: (WIDTH -= 100) });
+  };
 
   runIteration() {
     let count = this.state.count;
@@ -135,6 +159,7 @@ class Game extends React.Component {
         }
       }
     }
+
     this.board = newBoard;
     this.setState({ cells: this.makeCells() });
     this.timeoutHandler = window.setTimeout(() => {
@@ -192,6 +217,15 @@ class Game extends React.Component {
               Run
             </button>
           )}
+          <button className="button" onClick={this.handleRandom}>
+            Random
+          </button>
+          <button className="button" onClick={this.size}>
+            Increse Size
+          </button>
+          <button className="button" onClick={this.sizeDown}>
+            Decrese Size
+          </button>
           <button className="button" onClick={this.handleClear}>
             Clear
           </button>
