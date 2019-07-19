@@ -3,24 +3,20 @@ import React from 'react';
 function About() {
   return (
     <div>
-      <h1>Rules</h1>
+      <h1>About</h1>
+      <p>The Game of Life is a cellular automation devised by British </p>
       <p>
-        Any live cell with fewer than two live neighbours dies, as if caused by
-        underpopulation.
+        mathmetician John Horton Conway in 1970. A cellular automaton consists{' '}
       </p>
       <p>
-        Any live cell with two or three live neighbours lives on to the next
-        generation.
+        of a regular grid of cells, whith each cell being in a certain state,{' '}
       </p>
       <p>
-        Any live cell with more than three live neighbours dies, as if by
-        overpopulation.
+        such as "dead" or "alive". In Conway's Game of Life, each cell looks at{' '}
       </p>
-      <p>
-        Any dead cell with exactly three live neighbours becomes a live cell, as
-        if by reproduction.
-      </p>
+      <p>its eight neighbors to determine it's state. </p>
     </div>
   );
 }
+
 export default About;

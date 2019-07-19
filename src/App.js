@@ -3,6 +3,7 @@ import Game from './Game';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import './App.css';
 import Header from './Header';
+import Rules from './Rules';
 import About from './About';
 
 function App() {
@@ -10,7 +11,8 @@ function App() {
     <Router>
       <div className="App">
         <Header />
-        <Route path="/about" component={About} />
+        <Route path="/rules" component={Rules} />
+        <Route exact path="/about" component={About} />
         <Game />
       </div>
     </Router>

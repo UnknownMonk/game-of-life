@@ -9,8 +9,12 @@ function Header() {
           Home
         </Link>{' '}
         |{' '}
-        <Link style={linkStyle} to="/about">
+        <Link style={linkStyle} to="/rules">
           Rules
+        </Link>
+        |{' '}
+        <Link style={linkStyle} to="/about">
+          About
         </Link>
       </header>
     </div>
